@@ -6,7 +6,7 @@ Interactive, polished tutorials and a small in-browser playground — prepared t
 
 ## Live demo
 After uploading the repo to GitHub and enabling Pages the demo will be available at:
-`https://YOUR-USERNAME.github.io/REPO-NAME/`
+`https://tajbouk-cmd.github.io/REPO-NAME/`
 
 ## What is included
 - Dark theme UI with optional light mode (toggle saved in localStorage)
@@ -18,13 +18,13 @@ After uploading the repo to GitHub and enabling Pages the demo will be available
 ## How to run locally
 1. Clone the repo:
 ```bash
-git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
+git clone https://github.com/tajbouk-cmd/REPO-NAME.git
 cd REPO-NAME
 ```
 2. Open `index.html` in a modern browser.
 
 ## TON wallet (for bounty)
-`PUT-YOUR-TON-ADDRESS-HERE`
+`UQCwuvtVV7UA7ATGOxq_mjp_B-mXzh0esZRDNVPOPc-0c5V8`
 
 ## License
 MIT
