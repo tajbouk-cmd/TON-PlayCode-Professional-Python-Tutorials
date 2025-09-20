@@ -1,2 +1,30 @@
-# TON-play-code-tutorial
-a fun and interactive way to practice coding challenges with instant feedback
+# 🚀 TON PlayCode
+
+Interactive, polished tutorials and a small in-browser playground — prepared to submit for the **TON bounty**.
+
+![screenshot](assets/favicon.svg)
+
+## Live demo
+After uploading the repo to GitHub and enabling Pages the demo will be available at:
+`https://YOUR-USERNAME.github.io/REPO-NAME/`
+
+## What is included
+- Dark theme UI with optional light mode (toggle saved in localStorage)
+- Navigation (previous/next) + lessons list
+- 7 lessons + solutions
+- SVG icons (no external icon libraries)
+- Clear README and MIT license
+
+## How to run locally
+1. Clone the repo:
+```bash
+git clone https://github.com/YOUR-USERNAME/REPO-NAME.git
+cd REPO-NAME
+```
+2. Open `index.html` in a modern browser.
+
+## TON wallet (for bounty)
+`PUT-YOUR-TON-ADDRESS-HERE`
+
+## License
+MIT
