@@ -1,0 +1,44 @@
+[
+  {
+    "id": "1",
+    "title": "Hello TON",
+    "description": "Print a greeting to the console",
+    "starter": "console.log('Hello TON!');"
+  },
+  {
+    "id": "2",
+    "title": "Variables",
+    "description": "Declare variables and print their sum",
+    "starter": "let a = 5;\\nlet b = 7;\\nconsole.log(a + b);"
+  },
+  {
+    "id": "3",
+    "title": "Functions",
+    "description": "Write a function and call it",
+    "starter": "function square(x){ return x*x; }\\nconsole.log(square(4));"
+  },
+  {
+    "id": "4",
+    "title": "Arrays",
+    "description": "Use an array and get its length",
+    "starter": "let arr = [1,2,3,4];\\nconsole.log(arr.length);"
+  },
+  {
+    "id": "5",
+    "title": "Strings",
+    "description": "Manipulate string values",
+    "starter": "let s = 'TON';\\nconsole.log(s.toLowerCase());"
+  },
+  {
+    "id": "6",
+    "title": "Conditions",
+    "description": "If / else example",
+    "starter": "let x = 3;\\nif(x>=5){ console.log('big'); } else { console.log('small'); }"
+  },
+  {
+    "id": "7",
+    "title": "Loop",
+    "description": "For loop printing numbers",
+    "starter": "for(let i=1;i<=5;i++){ console.log(i); }"
+  }
+]
