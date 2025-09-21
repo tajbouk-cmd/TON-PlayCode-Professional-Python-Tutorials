@@ -1,4 +1,4 @@
-# 🚀 TON PlayCode
+# 🚀 TON Play Code tutorial
 
 Interactive, polished tutorials and a small in-browser playground — prepared to submit for the **TON bounty**.
 
@@ -6,7 +6,7 @@ Interactive, polished tutorials and a small in-browser playground — prepared t
 
 ## Live demo
 After uploading the repo to GitHub and enabling Pages the demo will be available at:
-`https://tajbouk-cmd.github.io/REPO-NAME/`
+`https://tajbouk-cmd.github.io/TON-play-code-tutorial/`
 
 ## What is included
 - Dark theme UI with optional light mode (toggle saved in localStorage)
@@ -19,7 +19,7 @@ After uploading the repo to GitHub and enabling Pages the demo will be available
 1. Clone the repo:
 ```bash
 git clone https://github.com/tajbouk-cmd/REPO-NAME.git
-cd REPO-NAME
+cd TON-play-code-tutorial
 ```
 2. Open `index.html` in a modern browser.
 
