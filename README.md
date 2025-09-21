@@ -18,7 +18,7 @@ After uploading the repo to GitHub and enabling Pages the demo will be available
 ## How to run locally
 1. Clone the repo:
 ```bash
-git clone https://github.com/tajbouk-cmd/REPO-NAME.git
+git clone https://github.com/tajbouk-cmd/TON-play-code-tutorial.git
 cd TON-play-code-tutorial
 ```
 2. Open `index.html` in a modern browser.
