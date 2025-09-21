@@ -1,4 +1,7 @@
-const BASE = 'https://tajbouk-cmd.github.io/TON-play-code-tutorial/';
+const BASE = location.hostname.includes('github.io')
+  ? 'https://tajbouk-cmd.github.io/TON-play-code-tutorial/'
+  : './';
+
 const LESSONS_PATH = BASE + 'lessons/lessons.json';
 const SOLUTIONS_PATH = BASE + 'lessons/solutions.json';
 
@@ -46,7 +49,7 @@ setThemeFromStorage();
 async function init(){
   try{
     const [lRes, sRes] = await Promise.all([
-      fetch(LESSONS_PATH), 
+      fetch(LESSONS_PATH),
       fetch(SOLUTIONS_PATH)
     ]);
 
@@ -77,40 +80,4 @@ async function init(){
   }catch(e){
     console.error(e);
     const content = document.getElementById('content');
-    if(content) content.innerHTML = '<p style="color:#f88">Error loading lessons — check lessons/ folder and filenames.</p>';
-  }
-}
-
-function load(i){
-  current = i;
-  const lesson = lessons[i];
-  const buttons = document.querySelectorAll('.lesson-list button');
-  buttons.forEach((b,idx)=>b.classList.toggle('active', idx===i));
-  document.getElementById('lessonTitle').textContent = lesson.title;
-  document.getElementById('lessonDesc').textContent = lesson.description || '';
-  document.getElementById('editor').value = lesson.starter || '';
-  document.getElementById('output').textContent = '';
-}
-
-// run code (eval) — for demo only
-function runCode(){
-  const code = document.getElementById('editor').value;
-  if(!code.trim()){ 
-    document.getElementById('output').textContent = 'No code to run.'; 
-    return; 
-  }
-  try{
-    const result = eval(code);
-    document.getElementById('output').textContent = result === undefined ? 'Code executed.' : String(result);
-  }catch(e){
-    document.getElementById('output').textContent = 'Error: '+e.message;
-  }
-}
-
-function showSolution(){
-  const key = lessons[current].id || String(current+1);
-  const sol = solutions[key] || solutions[lessons[current].title] || 'No solution available';
-  document.getElementById('editor').value = sol;
-}
-
-window.addEventListener('DOMContentLoaded', init);
+    if(content) content.innerHTML = '<p style="color:#f88">⚠️ Error loading lessons — تأكد من وجود الملفات
