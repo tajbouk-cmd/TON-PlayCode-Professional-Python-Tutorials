@@ -1,5 +1,6 @@
-const LESSONS_PATH = 'lessons/lessons.json';
-const SOLUTIONS_PATH = 'lessons/solutions.json';
+const BASE = 'https://tajbouk-cmd.github.io/TON-play-code-tutorial/';
+const LESSONS_PATH = BASE + 'lessons/lessons.json';
+const SOLUTIONS_PATH = BASE + 'lessons/solutions.json';
 
 let lessons = [];
 let solutions = {};
@@ -11,26 +12,47 @@ const themeIconSVG = document.getElementById('themeIcon');
 
 function setThemeFromStorage(){
   const t = localStorage.getItem('theme');
-  if(t === 'light'){ document.body.classList.add('light'); themeIconSVG.innerHTML = sunSVG(); }
-  else { document.body.classList.remove('light'); themeIconSVG.innerHTML = moonSVG(); }
+  if(t === 'light'){ 
+    document.body.classList.add('light'); 
+    themeIconSVG.innerHTML = sunSVG(); 
+  }
+  else { 
+    document.body.classList.remove('light'); 
+    themeIconSVG.innerHTML = moonSVG(); 
+  }
 }
 
-function moonSVG(){ return '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>' }
-function sunSVG(){ return '<circle cx="12" cy="12" r="4" fill="currentColor"/>' }
+function moonSVG(){ 
+  return '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>'; 
+}
+function sunSVG(){ 
+  return '<circle cx="12" cy="12" r="4" fill="currentColor"/>'; 
+}
 
 themeToggle && themeToggle.addEventListener('click', ()=>{
   document.body.classList.toggle('light');
-  if(document.body.classList.contains('light')){ themeIconSVG.innerHTML = sunSVG(); localStorage.setItem('theme','light'); }
-  else { themeIconSVG.innerHTML = moonSVG(); localStorage.setItem('theme','dark'); }
+  if(document.body.classList.contains('light')){ 
+    themeIconSVG.innerHTML = sunSVG(); 
+    localStorage.setItem('theme','light'); 
+  }
+  else { 
+    themeIconSVG.innerHTML = moonSVG(); 
+    localStorage.setItem('theme','dark'); 
+  }
 });
 
 setThemeFromStorage();
 
 async function init(){
   try{
-    const [lRes, sRes] = await Promise.all([fetch(LESSONS_PATH), fetch(SOLUTIONS_PATH)]);
+    const [lRes, sRes] = await Promise.all([
+      fetch(LESSONS_PATH), 
+      fetch(SOLUTIONS_PATH)
+    ]);
+
     if(!lRes.ok) throw new Error('Failed to load lessons.json');
     if(!sRes.ok) throw new Error('Failed to load solutions.json');
+
     lessons = await lRes.json();
     solutions = await sRes.json();
 
@@ -46,7 +68,10 @@ async function init(){
     document.getElementById('nextBtn').addEventListener('click', ()=>load(Math.min(lessons.length-1,current+1)));
     document.getElementById('runBtn').addEventListener('click', runCode);
     document.getElementById('showSolutionBtn').addEventListener('click', showSolution);
-    document.getElementById('clearBtn').addEventListener('click', ()=>{document.getElementById('editor').value='';document.getElementById('output').textContent='';});
+    document.getElementById('clearBtn').addEventListener('click', ()=>{
+      document.getElementById('editor').value='';
+      document.getElementById('output').textContent='';
+    });
 
     load(0);
   }catch(e){
@@ -70,7 +95,10 @@ function load(i){
 // run code (eval) — for demo only
 function runCode(){
   const code = document.getElementById('editor').value;
-  if(!code.trim()){ document.getElementById('output').textContent = 'No code to run.'; return; }
+  if(!code.trim()){ 
+    document.getElementById('output').textContent = 'No code to run.'; 
+    return; 
+  }
   try{
     const result = eval(code);
     document.getElementById('output').textContent = result === undefined ? 'Code executed.' : String(result);
