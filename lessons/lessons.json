@@ -1,44 +1,62 @@
 [
   {
-    "id": "1",
+    "id": 1,
     "title": "Hello TON",
-    "description": "Print a greeting to the console",
-    "starter": "console.log('Hello TON!');"
+    "description": "أول برنامج يطبع رسالة بسيطة.",
+    "starter": "print('Hello TON!')"
   },
   {
-    "id": "2",
-    "title": "Variables",
-    "description": "Declare variables and print their sum",
-    "starter": "let a = 5;\\nlet b = 7;\\nconsole.log(a + b);"
+    "id": 2,
+    "title": "المتغيرات",
+    "description": "إنشاء متغير وإظهار قيمته.",
+    "starter": "x = 42\nprint('قيمة x:', x)"
   },
   {
-    "id": "3",
-    "title": "Functions",
-    "description": "Write a function and call it",
-    "starter": "function square(x){ return x*x; }\\nconsole.log(square(4));"
+    "id": 3,
+    "title": "الحلقات",
+    "description": "تكرار جملة باستخدام حلقة for.",
+    "starter": "for i in range(3):\n    print('مرحبا', i)"
   },
   {
-    "id": "4",
-    "title": "Arrays",
-    "description": "Use an array and get its length",
-    "starter": "let arr = [1,2,3,4];\\nconsole.log(arr.length);"
+    "id": 4,
+    "title": "الشروط",
+    "description": "استخدام if/else للتحكم في التدفق.",
+    "starter": "x = 10\nif x > 5:\n    print('x أكبر من 5')\nelse:\n    print('x أصغر أو يساوي 5')"
   },
   {
-    "id": "5",
-    "title": "Strings",
-    "description": "Manipulate string values",
-    "starter": "let s = 'TON';\\nconsole.log(s.toLowerCase());"
+    "id": 5,
+    "title": "الدوال",
+    "description": "إنشاء دالة واستدعاؤها.",
+    "starter": "def salam(name):\n    return 'مرحبا ' + name\n\nprint(salam('TON'))"
   },
   {
-    "id": "6",
-    "title": "Conditions",
-    "description": "If / else example",
-    "starter": "let x = 3;\\nif(x>=5){ console.log('big'); } else { console.log('small'); }"
+    "id": 6,
+    "title": "القوائم",
+    "description": "التعامل مع list وتكرار عناصرها.",
+    "starter": "numbers = [1, 2, 3, 4]\nfor n in numbers:\n    print(n)"
   },
   {
-    "id": "7",
-    "title": "Loop",
-    "description": "For loop printing numbers",
-    "starter": "for(let i=1;i<=5;i++){ console.log(i); }"
+    "id": 7,
+    "title": "القواميس",
+    "description": "استخدام dict لتخزين بيانات على شكل مفتاح:قيمة.",
+    "starter": "student = { 'name': 'Ali', 'age': 20 }\nprint(student['name'], student['age'])"
+  },
+  {
+    "id": 8,
+    "title": "الحلقات المتداخلة",
+    "description": "إنشاء جدول ضرب باستخدام for متداخلة.",
+    "starter": "for i in range(1, 4):\n    for j in range(1, 4):\n        print(i, 'x', j, '=', i*j)"
+  },
+  {
+    "id": 9,
+    "title": "التعامل مع النصوص",
+    "description": "تعديل النصوص بطرق مختلفة.",
+    "starter": "msg = 'hello ton'\nprint(msg.upper())\nprint(msg.capitalize())"
+  },
+  {
+    "id": 10,
+    "title": "البرمجة الكائنية",
+    "description": "تعريف كائن (class) بسيط وإنشاؤه.",
+    "starter": "class Animal:\n    def __init__(self, name):\n        self.name = name\n\n    def speak(self):\n        return 'أنا ' + self.name\n\ncat = Animal('قطة')\nprint(cat.speak())"
   }
 ]
