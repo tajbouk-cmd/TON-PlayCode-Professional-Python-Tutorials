@@ -1,91 +1,35 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TON Play Code tutorial — Interactive TON Tutorials</title>
+  <meta charset="UTF-8">
+  <title>TON Play Code Tutorial</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 <body>
-<header class="site-header">
-  <div class="brand">
-    <svg class="logo" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
-      <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
-      <rect rx="5" width="24" height="24" fill="url(#g)"></rect>
-      <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">TON</text>
-    </svg>
-    <div>
-      <h1>TON Play Code tutorial</h1>
-      <p class="tagline">Interactive tutorials
-    </div>
-  </div>
+  <header>
+    <h1>TON Play Code Tutorial</h1>
+    <button id="themeToggle"><svg id="themeIcon" width="24" height="24"></svg></button>
+  </header>
 
-  <div class="header-actions">
-    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
-      <svg id="themeIcon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>
-    </button>
-    <a class="btn" href="README.md" target="_blank">README</a>
-  </div>
-</header>
+  <main>
+    <aside class="lesson-list" id="lessonList"></aside>
+    <section class="lesson-content">
+      <h2 id="lessonTitle">Lesson Title</h2>
+      <p id="lessonDesc"></p>
+      <textarea id="editor" placeholder="Write your code here..."></textarea>
+      <div class="buttons">
+        <button id="prevBtn">⏮ Prev</button>
+        <button id="nextBtn">⏭ Next</button>
+        <button id="runBtn">▶ Run</button>
+        <button id="showSolutionBtn">💡 Solution</button>
+        <button id="clearBtn">🗑 Clear</button>
+      </div>
+      <pre id="output"></pre>
+    </section>
+  </main>
 
-<main class="container" id="app">
-  <aside class="sidebar">
-    <h3>Lessons</h3>
-    <ul id="lessonList" class="lesson-list" role="list"></ul>
-
-    <div class="meta">
-      <button id="prevBtn" class="small icon-btn" title="Previous">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M15 6 L9 12 l6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button id="nextBtn" class="small icon-btn" title="Next">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 6 L15 12 l-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-
-    <div class="credits">
-      <strong>TON Play Code tutorial</strong><br>
-      Beginner-friendly tutorials
-    </div>
-  </aside>
-
-  <section class="content" id="content">
-    <h2 id="lessonTitle"></h2>
-    <p id="lessonDesc" class="muted"></p>
-
-    <label class="label">Starter code</label>
-    <textarea id="editor" spellcheck="false"></textarea>
-
-    <div class="controls">
-      <button id="runBtn" class="primary" title="Run code">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M5 3v18l15-9z" fill="currentColor"/></svg>
-        <span>Run</span>
-      </button>
-      <button id="showSolutionBtn" class="ghost" title="Show solution">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M9 18h6v1a1 1 0 0 1-1 1H10a1 1 0 0 1-1-1v-1zM12 3a5 5 0 0 0-3 9v1h6v-1a5 5 0 0 0-3-9z" fill="currentColor"/></svg>
-        <span>Solution</span>
-      </button>
-      <button id="clearBtn" class="ghost" title="Clear editor">
-        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 6 L18 18 M6 18 L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <span>Clear</span>
-      </button>
-    </div>
-
-    <label class="label">Output</label>
-    <pre id="output" class="output" aria-live="polite"></pre>
-
-    <details class="about">
-      <summary>About this demo</summary>
-      <p>This demo uses <strong>eval()</strong> for JS snippets—only for learning. Do not paste untrusted code.</p>
-    </details>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div>Made for TON Bounties • License: MIT</div>
-  <div class="footer-right">Wallet: <code>UQCwuvtVV7UA7ATGOxq_mjp_B-mXzh0esZRDNVPOPc-0c5V8</code></div>
-</footer>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
