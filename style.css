@@ -1,17 +1,17 @@
-/* Reset */
+/* General Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background: #1e1e1e;
-  color: #eee;
-  min-height: 100vh;
+  background: #181a1b;
+  color: #f1f1f1;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 body.light {
@@ -24,18 +24,17 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
-  background: #333;
+  padding: 15px 25px;
+  background: #202225;
   color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 body.light header {
   background: #ddd;
   color: #222;
 }
 
-header h1 {
-  font-size: 1.4rem;
-}
 header button {
   background: none;
   border: none;
@@ -47,68 +46,80 @@ header button {
 main {
   display: flex;
   flex: 1;
+  overflow: hidden;
 }
 
-/* Lesson list */
-.lesson-list {
-  width: 220px;
-  background: #252525;
-  padding: 10px;
+.sidebar {
+  width: 240px;
+  background: #2c2f33;
+  padding: 15px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  overflow-y: auto;
+  gap: 8px;
 }
-body.light .lesson-list {
-  background: #efefef;
+body.light .sidebar {
+  background: #ececec;
 }
 
-.lesson-list button {
+.sidebar button {
   background: transparent;
   border: 1px solid #555;
+  padding: 10px;
+  border-radius: 8px;
   color: inherit;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
   text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
 }
-.lesson-list button.active {
+.sidebar button:hover {
   background: #0088ff;
-  color: #fff;
   border-color: #0088ff;
+  color: #fff;
 }
-body.light .lesson-list button.active {
+.sidebar button.active {
   background: #0055aa;
+  color: #fff;
+  border-color: #0055aa;
+}
+body.light .sidebar button.active {
+  background: #0077cc;
+  color: #fff;
 }
 
-/* Lesson content */
-.lesson-content {
+/* Content */
+.content {
   flex: 1;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 15px;
+  overflow-y: auto;
 }
 
 #lessonTitle {
-  font-size: 1.3rem;
-  margin-bottom: 6px;
+  font-size: 1.4rem;
+  margin-bottom: 8px;
 }
 
 #lessonDesc {
-  font-size: 0.95rem;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #bbb;
+}
+body.light #lessonDesc {
+  color: #444;
 }
 
 textarea#editor {
   width: 100%;
-  height: 180px;
-  padding: 10px;
+  height: 220px;
+  padding: 12px;
   background: #111;
   color: #0f0;
-  border: 1px solid #555;
-  border-radius: 6px;
+  border: 1px solid #444;
+  border-radius: 8px;
   font-family: monospace;
+  font-size: 0.95rem;
   resize: vertical;
 }
 body.light textarea#editor {
@@ -117,42 +128,57 @@ body.light textarea#editor {
   border-color: #aaa;
 }
 
+/* Buttons */
 .buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.buttons button {
-  padding: 8px 14px;
+.btn {
+  padding: 10px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  background: #444;
-  color: #fff;
   font-size: 0.9rem;
-  transition: 0.2s;
-}
-.buttons button:hover {
-  background: #0088ff;
-}
-body.light .buttons button {
-  background: #ccc;
-  color: #222;
-}
-body.light .buttons button:hover {
-  background: #0055aa;
-  color: #fff;
+  transition: all 0.2s;
 }
 
+.btn.primary { background: #0088ff; color: #fff; }
+.btn.primary:hover { background: #0066cc; }
+
+.btn.secondary { background: #555; color: #fff; }
+.btn.secondary:hover { background: #666; }
+
+.btn.warning { background: #ffaa00; color: #000; }
+.btn.warning:hover { background: #cc8800; }
+
+.btn.danger { background: #ff4444; color: #fff; }
+.btn.danger:hover { background: #cc0000; }
+
+/* Output */
 #output {
   background: #111;
   color: #0ff;
-  padding: 10px;
-  border-radius: 6px;
-  min-height: 80px;
+  padding: 12px;
+  border-radius: 8px;
+  min-height: 100px;
   white-space: pre-wrap;
 }
 body.light #output {
   background: #f0f0f0;
   color: #333;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 12px;
+  background: #202225;
+  color: #aaa;
+  font-size: 0.85rem;
+}
+body.light footer {
+  background: #ddd;
+  color: #555;
 }
