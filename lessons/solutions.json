@@ -1,4 +1,12 @@
 {
-  "1": "print('Hello TON!')",
-  "2": "x = 7 * 6\nprint(x)\nprint('Done!')"
+  "1": "print('Hello, world!')",
+  "2": "name = 'Alice'\nage = 20\nprint(name, age)",
+  "3": "x = 7 * 6\nprint(x)\nprint(100 / 5)",
+  "4": "x = 10\nif x > 5:\n    print('Big')\nelse:\n    print('Small')",
+  "5": "for i in range(5):\n    print('Number', i)",
+  "6": "def greet(name):\n    return 'Hello ' + name\n\nprint(greet('Bob'))",
+  "7": "fruits = ['apple', 'banana', 'cherry']\nprint(fruits[0])\nprint(len(fruits))",
+  "8": "person = {'name':'Alice', 'age':25}\nprint(person['name'])\nprint(person['age'])",
+  "9": "fruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(fruit.upper())",
+  "10": "name = 'Player'\nscore = 0\nfor i in range(3):\n    score += i\nif score > 2:\n    print(name, 'won!')\nelse:\n    print(name, 'lost!')"
 }
