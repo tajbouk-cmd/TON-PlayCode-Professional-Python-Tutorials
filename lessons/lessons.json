@@ -1,14 +1,12 @@
 [
-  {
-    "id": "1",
-    "title": "Hello Python",
-    "description": "أول درس: اطبع رسالة ترحيب.",
-    "starter": "print('Hello TON!')"
-  },
-  {
-    "id": "2",
-    "title": "Operations",
-    "description": "جرب بعض العمليات الرياضية.",
-    "starter": "x = 7 * 6\nprint(x)"
-  }
+  { "id": "1", "title": "Hello Python", "description": "Print your first message in Python.", "starter": "print('Hello, world!')" },
+  { "id": "2", "title": "Variables", "description": "Create and print variables.", "starter": "name = 'Alice'\nage = 20\nprint(name, age)" },
+  { "id": "3", "title": "Math Operations", "description": "Play with addition, multiplication, and division.", "starter": "x = 7 * 6\nprint(x)" },
+  { "id": "4", "title": "If Statements", "description": "Decide with if/else conditions.", "starter": "x = 10\nif x > 5:\n    print('Big')\nelse:\n    print('Small')" },
+  { "id": "5", "title": "Loops", "description": "Repeat code using a for loop.", "starter": "for i in range(5):\n    print('Number', i)" },
+  { "id": "6", "title": "Functions", "description": "Define and call your own function.", "starter": "def greet(name):\n    return 'Hello ' + name\n\nprint(greet('Bob'))" },
+  { "id": "7", "title": "Lists", "description": "Store multiple values in a list.", "starter": "fruits = ['apple', 'banana', 'cherry']\nprint(fruits[0])" },
+  { "id": "8", "title": "Dictionaries", "description": "Store data as key-value pairs.", "starter": "person = {'name':'Alice', 'age':25}\nprint(person['name'])" },
+  { "id": "9", "title": "Loops with Lists", "description": "Loop through lists easily.", "starter": "fruits = ['apple', 'banana', 'cherry']\nfor fruit in fruits:\n    print(fruit)" },
+  { "id": "10", "title": "Final Project", "description": "Combine everything: variables, loops, and conditions.", "starter": "name = 'Player'\nscore = 0\nfor i in range(3):\n    score += i\nprint(name, 'score:', score)" }
 ]
