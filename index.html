@@ -4,31 +4,40 @@
   <meta charset="UTF-8">
   <title>TON Play Code Tutorial</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Pyodide -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 <body>
   <header>
     <h1>TON Play Code Tutorial</h1>
-    <button id="themeToggle"><svg id="themeIcon" width="24" height="24"></svg></button>
+    <button id="themeToggle" title="Toggle Theme">
+      <svg id="themeIcon" width="24" height="24"></svg>
+    </button>
   </header>
 
   <main>
-    <aside class="lesson-list" id="lessonList"></aside>
-    <section class="lesson-content">
+    <aside class="sidebar" id="lessonList"></aside>
+
+    <section class="content">
       <h2 id="lessonTitle">Lesson Title</h2>
       <p id="lessonDesc"></p>
-      <textarea id="editor" placeholder="Write your code here..."></textarea>
+
+      <textarea id="editor" placeholder="Write your Python code here..."></textarea>
+
       <div class="buttons">
-        <button id="prevBtn">⏮ Prev</button>
-        <button id="nextBtn">⏭ Next</button>
-        <button id="runBtn">▶ Run</button>
-        <button id="showSolutionBtn">💡 Solution</button>
-        <button id="clearBtn">🗑 Clear</button>
+        <button id="prevBtn" class="btn secondary">⏮ Previous</button>
+        <button id="nextBtn" class="btn secondary">Next ⏭</button>
+        <button id="runBtn" class="btn primary">▶ Run</button>
+        <button id="showSolutionBtn" class="btn warning">💡 Solution</button>
+        <button id="clearBtn" class="btn danger">🗑 Clear</button>
       </div>
-      <pre id="output"></pre>
+
+      <pre id="output">Output will appear here...</pre>
     </section>
   </main>
+
+  <footer>
+    <p>Built with ❤️ using Pyodide + JavaScript</p>
+  </footer>
 
   <script src="app.js"></script>
 </body>
