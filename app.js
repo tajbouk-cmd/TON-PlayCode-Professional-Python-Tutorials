@@ -1,121 +1,156 @@
+// ---------- CONFIG ----------
+const REPO_BASE = 'https://tajbouk-cmd.github.io/TON-play-code-tutorial/'; // update if repo name changes
+const LESSONS_PATH = (location.hostname.includes('github.io') ? REPO_BASE : './') + 'lessons/lessons.json';
+const SOLUTIONS_PATH = (location.hostname.includes('github.io') ? REPO_BASE : './') + 'lessons/solutions.json';
 
-const LESSONS_PATH = "lessons/lessons.json";
-const SOLUTIONS_PATH = "lessons/solutions.json";
+let lessons = [], solutions = {}, current = 0, pyodide = null;
+const statusEl = () => document.getElementById('status');
+const editorEl = () => document.getElementById('editor');
+const outputEl = () => document.getElementById('output');
 
-let lessons = [];
-let solutions = {};
-let current = 0;
-let pyodide = null;
-
-// Load Pyodide
-async function loadPyodideAndPackages() {
-  pyodide = await loadPyodide();
-  console.log("✅ Pyodide loaded!");
+// ---------- Pyodide loader ----------
+async function loadPyodideAndInit(){
+  statusEl().textContent = 'Pyodide: loading...';
+  try{
+    pyodide = await loadPyodide();
+    // prepare small helper in pyodide to run and capture stdout
+    await pyodide.runPythonAsync(`
+import sys, io
+def __run_capture(code):
+    buf = io.StringIO()
+    old = sys.stdout
+    sys.stdout = buf
+    try:
+        exec(code, globals())
+    finally:
+        sys.stdout = old
+    return buf.getvalue()
+`);
+    statusEl().textContent = 'Pyodide: ready';
+  }catch(err){
+    statusEl().textContent = 'Pyodide: failed to load';
+    console.error('Pyodide load error', err);
+  }
 }
-loadPyodideAndPackages();
+loadPyodideAndInit();
 
-// Theme
-const themeToggle = document.getElementById("themeToggle");
-const themeIconSVG = document.getElementById("themeIcon");
-
-function moonSVG(){ return '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>' }
-function sunSVG(){ return '<circle cx="12" cy="12" r="5" fill="currentColor"/>' }
-
-function setThemeFromStorage(){
-  const t = localStorage.getItem("theme");
-  if(t === "light"){ document.body.classList.add("light"); themeIconSVG.innerHTML = sunSVG(); }
-  else { document.body.classList.remove("light"); themeIconSVG.innerHTML = moonSVG(); }
+// ---------- Theme handling ----------
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+function moonSVG(){ return '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>'; }
+function sunSVG(){ return '<circle cx="12" cy="12" r="5" fill="currentColor"/>'; }
+function setTheme(){
+  const t = localStorage.getItem('theme') || 'dark';
+  if(t === 'light'){ document.body.classList.add('light'); themeIcon.innerHTML = sunSVG(); }
+  else { document.body.classList.remove('light'); themeIcon.innerHTML = moonSVG(); }
 }
-themeToggle && themeToggle.addEventListener("click", ()=>{
-  document.body.classList.toggle("light");
-  if(document.body.classList.contains("light")){ themeIconSVG.innerHTML = sunSVG(); localStorage.setItem("theme","light"); }
-  else { themeIconSVG.innerHTML = moonSVG(); localStorage.setItem("theme","dark"); }
+themeToggle && themeToggle.addEventListener('click', ()=>{
+  document.body.classList.toggle('light');
+  const now = document.body.classList.contains('light') ? 'light' : 'dark';
+  localStorage.setItem('theme', now);
+  setTheme();
 });
-setThemeFromStorage();
+setTheme();
 
-// Init lessons
+// ---------- Utilities: autosave & download ----------
+function saveCode(index, code){ localStorage.setItem('ton_lesson_code_' + index, code); }
+function loadSavedCode(index){ return localStorage.getItem('ton_lesson_code_' + index); }
+function downloadCodeAsFile(filename, content){
+  const blob = new Blob([content], {type: 'text/x-python'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 1000);
+}
+
+// ---------- Fetch lessons & wire UI ----------
 async function init(){
   try{
-    const [lRes, sRes] = await Promise.all([fetch(LESSONS_PATH), fetch(SOLUTIONS_PATH)]);
-    if(!lRes.ok) throw new Error("Failed to load lessons.json");
-    if(!sRes.ok) throw new Error("Failed to load solutions.json");
-    lessons = await lRes.json();
-    solutions = await sRes.json();
+    const [lr, sr] = await Promise.all([fetch(LESSONS_PATH), fetch(SOLUTIONS_PATH)]);
+    if(!lr.ok) throw new Error('Could not fetch lessons');
+    if(!sr.ok) throw new Error('Could not fetch solutions');
+    lessons = await lr.json();
+    solutions = await sr.json();
 
-    const list = document.getElementById("lessonList");
+    const list = document.getElementById('lessonList');
     lessons.forEach((ls, i)=>{
-      const btn = document.createElement("button");
-      btn.textContent = (i+1)+". "+ls.title;
-      btn.addEventListener("click", ()=>load(i));
-      list.appendChild(btn);
+      const b = document.createElement('button');
+      b.textContent = `${i+1}. ${ls.title}`;
+      b.addEventListener('click', ()=>loadLesson(i));
+      list.appendChild(b);
     });
 
-    document.getElementById("prevBtn").addEventListener("click", ()=>load(Math.max(0,current-1)));
-    document.getElementById("nextBtn").addEventListener("click", ()=>load(Math.min(lessons.length-1,current+1)));
-    document.getElementById("runBtn").addEventListener("click", runCode);
-    document.getElementById("showSolutionBtn").addEventListener("click", showSolution);
-    document.getElementById("clearBtn").addEventListener("click", ()=>{
-      document.getElementById("editor").value="";
-      document.getElementById("output").textContent="";
-      saveCode(current, ""); // clear saved code
+    document.getElementById('prevBtn').addEventListener('click', ()=>loadLesson(Math.max(0, current-1)));
+    document.getElementById('nextBtn').addEventListener('click', ()=>loadLesson(Math.min(lessons.length-1, current+1)));
+    document.getElementById('runBtn').addEventListener('click', runCode);
+    document.getElementById('showSolutionBtn').addEventListener('click', showSolution);
+    document.getElementById('clearBtn').addEventListener('click', ()=>{ editorEl().value=''; outputEl().textContent=''; saveCode(current, ''); });
+    document.getElementById('downloadBtn').addEventListener('click', ()=> downloadCodeAsFile(`lesson-${current+1}.py`, editorEl().value || lessons[current].starter || ''));
+
+    // auto-save as user types
+    document.addEventListener('input', (e)=>{
+      if(e.target === editorEl()){
+        saveCode(current, e.target.value);
+      }
     });
 
-    load(0);
-  }catch(e){
-    console.error(e);
-    const content = document.querySelector(".content");
-    if(content) content.innerHTML = '<p style="color:#f88">Error loading lessons — check lessons/ folder and filenames.</p>';
+    loadLesson(0);
+  }catch(err){
+    console.error(err);
+    const c = document.getElementById('content');
+    if(c) c.innerHTML = `<p style="color:#f88">Error loading lessons or solutions. Check files and paths.</p>`;
   }
 }
 
-function load(i){
+function markActive(index){
+  const buttons = document.querySelectorAll('#lessonList button');
+  buttons.forEach((b, i)=> b.classList.toggle('active', i === index));
+}
+
+// ---------- Load lesson ----------
+function loadLesson(i){
   current = i;
-  const lesson = lessons[i];
-  const buttons = document.querySelectorAll(".sidebar button");
-  buttons.forEach((b,idx)=>b.classList.toggle("active", idx===i));
-  document.getElementById("lessonTitle").textContent = lesson.title;
-  document.getElementById("lessonDesc").textContent = lesson.description || "";
-
-  // Load saved code or starter
-  const saved = getSavedCode(i);
-  document.getElementById("editor").value = saved || lesson.starter || "";
-  document.getElementById("output").textContent = "";
+  markActive(i);
+  const l = lessons[i];
+  document.getElementById('lessonTitle').textContent = l.title;
+  document.getElementById('lessonDesc').textContent = l.description || '';
+  const saved = loadSavedCode(i);
+  editorEl().value = saved || l.starter || '';
+  outputEl().textContent = '';
 }
 
-// Run code
+// ---------- Run code using Pyodide with capture ----------
 async function runCode(){
-  const code = document.getElementById("editor").value;
-  saveCode(current, code); // auto-save before running
-  if(!code.trim()){ document.getElementById("output").textContent = "No code to run."; return; }
+  const code = editorEl().value || '';
+  saveCode(current, code);
+  if(!code.trim()){ outputEl().textContent = 'No code to run.'; return; }
+  if(!pyodide){
+    outputEl().textContent = 'Pyodide not loaded yet.';
+    return;
+  }
+  statusEl().textContent = 'Running...';
   try{
-    const result = await pyodide.runPythonAsync(code);
-    document.getElementById("output").textContent = result === undefined ? "Code executed." : String(result);
-  }catch(e){
-    document.getElementById("output").textContent = "Error: "+e.message;
+    // Escape triple quotes inside user code to avoid string termination issues
+    const wrapped = `
+__run_capture("""${code.replace(/"""/g, '\\"""')}""")
+`;
+    const result = await pyodide.runPythonAsync(wrapped);
+    // result is the captured stdout
+    outputEl().textContent = result === undefined ? 'Code executed.' : String(result) || 'Code executed.';
+  }catch(err){
+    outputEl().textContent = 'Error: ' + (err && err.message ? err.message : String(err));
+  }finally{
+    statusEl().textContent = 'Ready';
   }
 }
 
+// ---------- Show solution ----------
 function showSolution(){
   const key = lessons[current].id || String(current+1);
-  const sol = solutions[key] || solutions[lessons[current].title] || "No solution available";
-  document.getElementById("editor").value = sol;
+  const sol = solutions[key] || solutions[lessons[current].title] || 'No solution available';
+  editorEl().value = sol;
   saveCode(current, sol);
 }
 
-/* 🔥 LocalStorage: Save/Load Code */
-function saveCode(index, code){
-  localStorage.setItem("lesson_code_"+index, code);
-}
-
-function getSavedCode(index){
-  return localStorage.getItem("lesson_code_"+index);
-}
-
-// Auto-save while typing
-document.addEventListener("input", e=>{
-  if(e.target.id === "editor"){
-    saveCode(current, e.target.value);
-  }
-});
-
-window.addEventListener("DOMContentLoaded", init);
+// start
+window.addEventListener('DOMContentLoaded', init);
