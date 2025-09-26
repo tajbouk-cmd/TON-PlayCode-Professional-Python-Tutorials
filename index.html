@@ -1,42 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TON Play Code Tutorial</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TON PlayCode — Professional Python Tutorials</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Pyodide -->
   <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 <body>
-  <header>
-    <h1>TON Play Code Tutorial</h1>
-    <button id="themeToggle" title="Toggle Theme">
-      <svg id="themeIcon" width="24" height="24"></svg>
-    </button>
+  <header class="site-header">
+    <div class="brand">
+      <svg class="logo" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+        <rect rx="5" width="24" height="24" fill="url(#g)"></rect>
+        <text x="12" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">TON</text>
+      </svg>
+      <div>
+        <h1>TON PlayCode</h1>
+        <p class="tag">Professional Python tutorials — built for TON bounty</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-label="Toggle theme">
+        <svg id="themeIcon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"></svg>
+      </button>
+      <button id="downloadBtn" class="btn small">Download .py</button>
+    </div>
   </header>
 
-  <main>
-    <aside class="sidebar" id="lessonList"></aside>
+  <main class="main">
+    <aside class="sidebar">
+      <h3>Lessons</h3>
+      <div id="lessonList" class="lesson-list" role="list"></div>
+      <div class="nav-mini">
+        <button id="prevBtn" class="small">← Prev</button>
+        <button id="nextBtn" class="small">Next →</button>
+      </div>
+      <div class="credits">TON PlayCode • MIT</div>
+    </aside>
 
-    <section class="content">
-      <h2 id="lessonTitle">Lesson Title</h2>
-      <p id="lessonDesc"></p>
-
-      <textarea id="editor" placeholder="Write your Python code here..."></textarea>
-
-      <div class="buttons">
-        <button id="prevBtn" class="btn secondary">⏮ Previous</button>
-        <button id="nextBtn" class="btn secondary">Next ⏭</button>
-        <button id="runBtn" class="btn primary">▶ Run</button>
-        <button id="showSolutionBtn" class="btn warning">💡 Solution</button>
-        <button id="clearBtn" class="btn danger">🗑 Clear</button>
+    <section class="content" id="content">
+      <div class="content-head">
+        <h2 id="lessonTitle">Loading…</h2>
+        <p id="lessonDesc" class="muted"></p>
       </div>
 
-      <pre id="output">Output will appear here...</pre>
+      <label class="label">Editor (Python)</label>
+      <textarea id="editor" spellcheck="false" autocapitalize="off" autocomplete="off"></textarea>
+
+      <div class="controls">
+        <button id="runBtn" class="btn primary">▶ Run</button>
+        <button id="showSolutionBtn" class="btn ghost">💡 Solution</button>
+        <button id="clearBtn" class="btn ghost">Clear</button>
+        <span class="status" id="status">Pyodide: loading…</span>
+      </div>
+
+      <label class="label">Output</label>
+      <pre id="output" class="output" aria-live="polite">—</pre>
+
+      <details class="about">
+        <summary>About this sandbox</summary>
+        <p>This page runs Python in your browser using <strong>Pyodide</strong>. It's safe for learning, but avoid running untrusted code that tries to access remote resources or mutate your environment.</p>
+      </details>
     </section>
   </main>
 
-  <footer>
-    <p>Built with ❤️ using Pyodide + JavaScript</p>
+  <footer class="footer">
+    <small>Made for TON Bounty • Put your TON wallet in README before submission</small>
   </footer>
 
   <script src="app.js"></script>
