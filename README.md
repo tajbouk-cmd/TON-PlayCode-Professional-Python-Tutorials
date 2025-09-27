@@ -14,6 +14,6 @@ Designed to be submitted as a polished entry for a TON bounty.
 ## How to use
 1. Clone the repo:
 ```bash
-git clone https://github.com/tajbouk-cmd/TON-play-code-tutorial.git
+git clone https://github.com/tajbouk-cmd/TON PlayCode — Professional Python Tutorials.git
 cd TON-play-code-tutorial
 
