@@ -1,5 +1,5 @@
 // ---------- CONFIG ----------
-const REPO_BASE = 'https://tajbouk-cmd.github.io/TON-play-code-tutorial/'; // update if repo name changes
+const REPO_BASE = 'https://tajbouk-cmd.github.io/TON PlayCode — Professional Python Tutorials/'; // update if repo name changes
 const LESSONS_PATH = (location.hostname.includes('github.io') ? REPO_BASE : './') + 'lessons/lessons.json';
 const SOLUTIONS_PATH = (location.hostname.includes('github.io') ? REPO_BASE : './') + 'lessons/solutions.json';
 
