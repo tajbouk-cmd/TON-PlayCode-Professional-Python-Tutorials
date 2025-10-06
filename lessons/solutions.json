@@ -1,22 +1,6 @@
 {
-  "1":"print('Hello, TON!')",
-  "2":"name = 'Alice'\nage = 30\npi = 3.1415\nprint(name, age, pi)",
-  "3":"x = 42\nif x % 2 == 0:\n    print('even')\nelse:\n    print('odd')",
-  "4":"for i in range(5):\n    print(f'iteration {i}')",
-  "5":"def add(a, b=0):\n    return a + b\nprint(add(3,4))",
-  "6":"data = [1,2,3,4]\nprint(data[0], data[-1])\nprint(data[1:3])",
-  "7":"person = {'name':'Ali','age':25}\nprint(person['name'])\nfruits = set(['apple','banana'])\nprint('apple' in fruits)",
-  "8":"with open('notes.txt','w') as f:\n    f.write('TON PlayCode demo')\nprint('written')",
-  "9":"try:\n    x = int('abc')\nexcept ValueError as e:\n    print('Conversion failed:', e)",
-  "10":"import math\nprint('sqrt(16)=', math.sqrt(16))",
-  "11":"squares = [x*x for x in range(6)]\nprint(squares)",
-  "12":"nums = [1,2,3,4]\ndoubled = list(map(lambda x: x*2, nums))\nprint(doubled)",
-  "13":"class Person:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        return 'Hello ' + self.name\np = Person('Ton')\nprint(p.greet())",
-  "14":"class Animal:\n    def speak(self):\n        return '...'\nclass Dog(Animal):\n    def speak(self):\n        return 'woof'\nprint(Dog().speak())",
-  "15":"def gen(n):\n    for i in range(n):\n        yield i*i\nfor v in gen(5):\n    print(v)",
-  "16":"def log(f):\n    def wrapper(*a,**kw):\n        print('call', f.__name__)\n        return f(*a,**kw)\n    return wrapper\n@log\ndef hi():\n    print('hi')\nhi()",
-  "17":"def fact(n):\n    if n<=1: return 1\n    return n*fact(n-1)\nprint(fact(6))",
-  "18":"def binary_search(arr, x):\n    lo, hi = 0, len(arr)-1\n    while lo<=hi:\n        mid=(lo+hi)//2\n        if arr[mid]==x: return mid\n        if arr[mid]<x: lo=mid+1\n        else: hi=mid-1\n    return -1\nprint(binary_search([1,3,5,7],5))",
-  "19":"import json\ndata={'a':1,'b':2}\ns = json.dumps(data)\nprint(s)\nprint(json.loads(s))",
-  "20":"todos=[]\ndef add(task):\n    todos.append(task)\nadd('write tests')\nadd('build feature')\nprint('TODOS:', todos)"
+  "Lesson 1": "print('Hello from TON PlayCode!')",
+  "Lesson 2": "a = 10; b = 20; print(a + b)",
+  "Lesson 3": "for i in range(1, 6): print(i)",
+  "Lesson 4": "def greet(name): print(f'Hello {name}')"
 }
