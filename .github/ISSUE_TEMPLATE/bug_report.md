@@ -1,14 +1,14 @@
 name: 🐞 Bug Report
 description: Report a reproducible bug or issue in the project
 title: "[Bug] <short description>"
-labels: [bug]
+labels: [bug, needs-review]
 assignees: []
 
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for reporting a bug! Please fill out the form below so we can investigate and fix it.
+        👋 Thanks for reporting a bug! Please fill out the form below so we can investigate and fix it.
 
   - type: input
     id: environment
@@ -21,8 +21,15 @@ body:
     id: description
     attributes:
       label: Bug Description
-      description: What happened? What did you expect to happen?
+      description: What happened?
       placeholder: "Describe the issue clearly and concisely."
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should have happened instead?
+      placeholder: "Describe the correct behavior you expected."
 
   - type: textarea
     id: steps
@@ -46,3 +53,8 @@ body:
     attributes:
       label: Additional Context
       description: Any other information that might help us understand or fix the issue?
+
+  - type: markdown
+    attributes:
+      value: |
+        🔒 If your report involves a security vulnerability, please refer to [SECURITY.md](../../SECURITY.md) and contact the maintainer privately.
