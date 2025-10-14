@@ -1,19 +1,19 @@
-# TON PlayCode — Professional Python Tutorials
+# TON PlayCode Tutorial 🧠💻
 
-This repository contains an in-browser Python tutorial playground built with **Pyodide**.  
-Designed to be submitted as a polished entry for a TON bounty.
+Learn and experiment with Python directly in your browser, with examples inspired by TON Blockchain smart contract testing.
 
-## Features
-- 20 professional lessons ranging from basics to OOP and algorithms.
-- In-browser execution using Pyodide (no server-side code).
-- Autosave per-lesson (localStorage).
-- Download current lesson code as `.py`.
-- Light / dark theme toggle.
-- Clean responsive UI.
+---
 
-## How to use
-1. Clone the repo:
+## 🚀 Features
+- Run Python code instantly in-browser (no installation required).
+- Educational examples linked to TON concepts (Jettons, Replay Protection, Dust Testing).
+- Lightweight and beginner-friendly interface.
+- Hosted via GitHub Pages for easy access.
+
+---
+
+## 🛠️ Local Setup
 ```bash
-git clone https://github.com/tajbouk-cmd/TON PlayCode — Professional Python Tutorials.git
-cd TON-play-code-tutorial
-
+git clone https://github.com/tajbouk-cmd/TON-playcode-tutorial.git
+cd TON-playcode-tutorial
+# Open index.html in your browser
